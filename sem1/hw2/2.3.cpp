@@ -7,8 +7,8 @@ void build(int leftNumerator, int leftDenominator, int rightNumerator, int right
 	int mediantDenominator = leftDenominator + rightDenominator;
 	if (mediantDenominator <= maxDenominator)
 	{
-		cout << mediantNumerator << "/" << mediantDenominator << " ";
 		build(leftNumerator, leftDenominator, mediantNumerator, mediantDenominator, maxDenominator);
+		cout << mediantNumerator << "/" << mediantDenominator << " ";
 		build(mediantNumerator, mediantDenominator, rightNumerator, rightDenominator, maxDenominator);
 	}
 }
