@@ -1,9 +1,40 @@
 #include <iostream>
+#include <ctime>
+#include <cmath>
 using namespace std;
 
-int generateNumber(int* availableNumbers, int index)
+void transferIntoArray(int number, int* array);
+
+bool ifAllDigitsAreUnique(int* numberArray)
 {
-	return availableNumbers[index];
+	for (int i = 0; i < 3; ++i)
+	{
+		for (int j = i + 1; j < 4; ++j)
+		{
+			if (numberArray[i] == numberArray[j])
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+int generateNumber()
+{
+	int numberArray[4] = {};
+	srand(time(0));
+	while (!ifAllDigitsAreUnique(numberArray) || numberArray[0] == 0)
+	{
+		int randomNumber = rand();
+		transferIntoArray(randomNumber, numberArray);
+	}
+	int answer = 0;
+	for (int i = 0; i < 4; ++i)
+	{
+		answer += numberArray[3 - i] * pow(10, i);
+	}
+	return answer;
 }
 
 void transferIntoArray(int number, int* array)
@@ -48,13 +79,7 @@ int countCows(int* usersAnswerArray, int* correctAnswerArray)
 
 int main(int argc, char const *argv[])
 {
-	int availableNumbers[10] = {1234, 9127, 6305, 8256, 1924, 5293, 4103, 7777, 4050, 3010};
-	cout << "input the natural number (from 1 to 10)\n";
-	int index = 0;
-	cin >> index;
-	cout << "now you are playing level " << index << "\n";
-	--index;
-	int correctAnswer = generateNumber(availableNumbers, index);
+	int correctAnswer = generateNumber();
 	int correctAnswerArray[4] = {};
 	transferIntoArray(correctAnswer, correctAnswerArray);
 	int usersAnswer = 0;
