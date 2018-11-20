@@ -3,7 +3,8 @@ using namespace std;
 
 void printBinary(int number)
 {
-    for (int i = 8 * sizeof(number) - 1; i >= 0; --i)
+    const int lastBit = 8 * sizeof(number) - 1;
+    for (int i = lastBit; i >= 0; --i)
     {
         cout << ((number >> i) & 1);
     }
@@ -12,7 +13,8 @@ void printBinary(int number)
 
 void convertToArray(int number, int *numberArray)
 {
-    for (int i = 8 * sizeof(number) - 1; i >= 0; --i)
+    const int lastBit = 8 * sizeof(number) - 1;
+    for (int i = lastBit; i >= 0; --i)
     {
         int temp = (number >> i) & 1;
         numberArray[i] = temp;
