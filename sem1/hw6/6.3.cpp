@@ -162,4 +162,5 @@ int main()
 	printPowers(coefficientsArray, polynomsPower);
 	cout << "\n";
 	printMonoms(coefficientsArray, polynomsPower);
+	delete [] coefficientsArray;
 }
