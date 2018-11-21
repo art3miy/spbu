@@ -43,5 +43,6 @@ int main()
     {
         cout << i  << " " << calculateRealNumber(studentsArray, studentsArray[i]) << "\n";
     }
+    delete [] studentsArray;
     return 0;
 }
