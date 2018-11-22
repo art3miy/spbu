@@ -79,6 +79,7 @@ int main()
             return 1;
         }
     }
+    deleteSet(set);
     cout << "Bye\n";
     return 0;
 }
