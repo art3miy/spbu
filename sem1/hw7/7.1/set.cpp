@@ -3,29 +3,31 @@
 #include "set.h"
 using namespace std;
 
-BinarySearchTree *createSet()
+Set *createSet()
 {
-    return createBst();
+    BinarySearchTree *tree = createBst();
+    return new Set {tree};
 }
 
-void deleteSet(BinarySearchTree *set)
+bool isFindInSet(Set *set, int value)
 {
-    deleteBst(set);
+    return isFindInBst(set->tree, value);
 }
 
-bool isFindInSet(BinarySearchTree *set, int value)
+void addToSet(Set *set, int value)
 {
-    return isFindInBst(set, value);
+    addToBst(set->tree, value);
 }
 
-void addToSet(BinarySearchTree *set, int value)
+void deleteFromSet(Set *set, int value)
 {
-    addToBst(set, value);
+    deleteFromBst(set->tree, value);
 }
 
-void deleteFromSet(BinarySearchTree *set, int value)
+void deleteSet(Set *set)
 {
-    deleteFromBst(set, value);
+    deleteBst(set->tree);
+    delete set;
 }
 
 void printIncreasingOrder(BinarySearchTreeNode *node)
@@ -38,9 +40,9 @@ void printIncreasingOrder(BinarySearchTreeNode *node)
     }
 }
 
-void printIncreasingOrder(BinarySearchTree *set)
+void printIncreasingOrder(Set *set)
 {
-    printIncreasingOrder(set->root);
+    printIncreasingOrder(set->tree->root);
     cout << "\n";
 }
 
@@ -54,13 +56,13 @@ void printDecreasingOrder(BinarySearchTreeNode *node)
     }
 }
 
-void printDecreasingOrder(BinarySearchTree *set)
+void printDecreasingOrder(Set *set)
 {
-    printDecreasingOrder(set->root);
+    printDecreasingOrder(set->tree->root);
     cout << "\n";
 }
 
-void printSetParsing(BinarySearchTreeNode *node)
+void printInABCFormat(BinarySearchTreeNode *node)
 {
     cout << " ";
     if (!node)
@@ -70,13 +72,14 @@ void printSetParsing(BinarySearchTreeNode *node)
     else
     {
         cout << "(" << node->key;
-        printSetParsing(node->leftChild);
-        printSetParsing(node->rightChild);
+        printInABCFormat(node->leftChild);
+        printInABCFormat(node->rightChild);
         cout << ")";
     }
 }
 
-void printSetParsing(BinarySearchTree *set)
+void printInABCFormat(Set *set)
 {
-    printSetParsing(set->root);
+    printInABCFormat(set->tree->root);
+    cout << "\n";
 }

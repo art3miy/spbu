@@ -1,13 +1,18 @@
 #pragma once
 #include "bst.h"
 
-BinarySearchTree *createSet();
-void deleteSet(BinarySearchTree *set);
+struct Set
+{
+    BinarySearchTree *tree;
+};
 
-void printIncreasingOrder(BinarySearchTree *set);
-void printDecreasingOrder(BinarySearchTree *set);
-void printSetParsing(BinarySearchTree *set);
+Set *createSet();
+void deleteSet(Set *set);
 
-bool isFindInSet(BinarySearchTree *set, int value);
-void addToSet(BinarySearchTree *set, int value);
-void deleteFromSet(BinarySearchTree *set, int value);
+void printIncreasingOrder(Set *set);
+void printDecreasingOrder(Set *set);
+void printInABCFormat(Set *set);
+
+bool isFindInSet(Set *set, int value);
+void addToSet(Set *set, int value);
+void deleteFromSet(Set *set, int value);

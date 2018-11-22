@@ -21,6 +21,7 @@ void deleteBst(BinarySearchTreeNode *&node)
 void deleteBst(BinarySearchTree *tree)
 {
     deleteBst(tree->root);
+    delete tree;
 }
 
 bool isFindInBst(BinarySearchTreeNode *node, int value)
